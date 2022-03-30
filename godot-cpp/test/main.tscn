@@ -1,0 +1,252 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://gdexample.gdns" type="Script" id=1]
+[ext_resource path="res://src/gdnative/HUD.gdns" type="Script" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://money.tscn" type="PackedScene" id=4]
+[ext_resource path="res://textures/2 Background/Day/1.png" type="Texture" id=5]
+[ext_resource path="res://font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://textures/2 Background/Day/5.png" type="Texture" id=7]
+[ext_resource path="res://textures/2 Background/Day/2.png" type="Texture" id=8]
+[ext_resource path="res://fontTheme.tres" type="Theme" id=9]
+[ext_resource path="res://textures/3 Objects/Other/Box.png" type="Texture" id=10]
+[ext_resource path="res://textures/3 Objects/Grass/6.png" type="Texture" id=11]
+[ext_resource path="res://textures/3 Objects/Grass/5.png" type="Texture" id=12]
+[ext_resource path="res://textures/3 Objects/Grass/7.png" type="Texture" id=13]
+[ext_resource path="res://textures/3 Objects/Grass/9.png" type="Texture" id=14]
+[ext_resource path="res://textures/3 Objects/Grass/10.png" type="Texture" id=15]
+[ext_resource path="res://textures/3 Objects/Grass/11.png" type="Texture" id=16]
+[ext_resource path="res://textures/3 Objects/Grass/2.png" type="Texture" id=17]
+[ext_resource path="res://textures/3 Objects/Grass/1.png" type="Texture" id=18]
+[ext_resource path="res://textures/3 Objects/Grass/13.png" type="Texture" id=19]
+[ext_resource path="res://textures/3 Objects/Grass/4.png" type="Texture" id=20]
+[ext_resource path="res://textures/3 Objects/Grass/15.png" type="Texture" id=21]
+[ext_resource path="res://textures/3 Objects/Grass/3.png" type="Texture" id=22]
+[ext_resource path="res://textures/3 Objects/Grass/14.png" type="Texture" id=23]
+[ext_resource path="res://textures/3 Objects/Grass/8.png" type="Texture" id=24]
+[ext_resource path="res://textures/3 Objects/Grass/12.png" type="Texture" id=25]
+
+[node name="Main" type="Node2D"]
+position = Vector2( 0, 300 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -406.0 ]
+}
+mob_scene = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 520, 423 )
+scale = Vector2( 3, 3 )
+_max_speed = 700.0
+_acceleration = 1400.0
+_deceleration = 1600.0
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="Money" parent="." instance=ExtResource( 4 )]
+position = Vector2( 513, -104 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 2 )
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+modulate = Color( 1, 0.317647, 0.317647, 1 )
+anchor_right = 1.0
+margin_left = 201.0
+margin_right = -310.0
+margin_bottom = 78.0
+rect_scale = Vector2( 1.2, 1.2 )
+theme = ExtResource( 9 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 1
+custom_fonts/font = ExtResource( 6 )
+text = "0:60"
+align = 1
+valign = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 775.96
+margin_top = 275.118
+margin_right = -75.04
+margin_bottom = 329.118
+rect_scale = Vector2( 1.25, 1.25 )
+theme = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 0.854902, 0.368627, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 1
+text = "Score: 0"
+valign = 1
+
+[node name="GameTimer" type="Timer" parent="HUD"]
+autostart = true
+
+[node name="Lives" type="Node2D" parent="HUD"]
+position = Vector2( 560, -370 )
+scale = Vector2( 2, 2 )
+
+[node name="life1" type="Sprite" parent="HUD/Lives"]
+position = Vector2( 200, 207 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 10 )
+
+[node name="life2" type="Sprite" parent="HUD/Lives"]
+position = Vector2( 158, 207 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 10 )
+
+[node name="life3" type="Sprite" parent="HUD/Lives"]
+position = Vector2( 116, 207 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 10 )
+
+[node name="EndScreen" type="Node2D" parent="HUD"]
+
+[node name="BG" type="Sprite" parent="HUD/EndScreen"]
+modulate = Color( 0.607843, 0.396078, 0.396078, 1 )
+position = Vector2( 512, 381 )
+scale = Vector2( 2.3, 2.4 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="HUD/EndScreen/BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -286.522
+margin_top = -232.609
+margin_right = -287.664
+margin_bottom = -232.609
+theme = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "You lost"
+align = 1
+valign = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/EndScreen/BG/Label"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 182.609
+margin_top = 114.775
+margin_right = -219.249
+margin_bottom = 168.775
+rect_scale = Vector2( 1.25, 1.25 )
+theme = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 0.854902, 0.368627, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 1
+text = "Score: 0"
+align = 1
+valign = 1
+
+[node name="BG" type="Node2D" parent="."]
+modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
+position = Vector2( 512, 64 )
+scale = Vector2( 2.25, 2.25 )
+z_index = -2
+
+[node name="1" type="Sprite" parent="BG"]
+modulate = Color( 0.709804, 0.709804, 0.709804, 1 )
+texture = ExtResource( 5 )
+
+[node name="2" type="Sprite" parent="BG"]
+modulate = Color( 0.709804, 0.709804, 0.709804, 1 )
+texture = ExtResource( 8 )
+
+[node name="5" type="Sprite" parent="BG"]
+modulate = Color( 0.709804, 0.709804, 0.709804, 1 )
+texture = ExtResource( 7 )
+
+[node name="Grass" type="Node2D" parent="BG"]
+modulate = Color( 0.792157, 0.580392, 0.505882, 1 )
+position = Vector2( -27.229, 155 )
+scale = Vector2( 3, 3 )
+
+[node name="grass 1" type="Sprite" parent="BG/Grass"]
+position = Vector2( 10, 0 )
+scale = Vector2( 0.444, 0.4 )
+texture = ExtResource( 18 )
+
+[node name="grass 2" type="Sprite" parent="BG/Grass"]
+position = Vector2( 69.7037, 0.592606 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 17 )
+
+[node name="grass 3" type="Sprite" parent="BG/Grass"]
+position = Vector2( -60, 0 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 22 )
+
+[node name="grass 4" type="Sprite" parent="BG/Grass"]
+position = Vector2( 5, 0.29631 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 20 )
+
+[node name="grass 5" type="Sprite" parent="BG/Grass"]
+position = Vector2( -22, 0 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 12 )
+
+[node name="grass 6" type="Sprite" parent="BG/Grass"]
+position = Vector2( 33, 0.29631 )
+scale = Vector2( 0.55, 0.55 )
+texture = ExtResource( 11 )
+
+[node name="grass 7" type="Sprite" parent="BG/Grass"]
+position = Vector2( 41.4445, 0.296326 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 13 )
+
+[node name="grass 8" type="Sprite" parent="BG/Grass"]
+position = Vector2( -34.1829, -0.703697 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="grass 9" type="Sprite" parent="BG/Grass"]
+position = Vector2( -44, 0 )
+scale = Vector2( 0.444, 0.5 )
+texture = ExtResource( 14 )
+
+[node name="grass 10" type="Sprite" parent="BG/Grass"]
+position = Vector2( 25, 0.148148 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 15 )
+
+[node name="grass 11" type="Sprite" parent="BG/Grass"]
+position = Vector2( -12, 0.148148 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 16 )
+
+[node name="grass 12" type="Sprite" parent="BG/Grass"]
+position = Vector2( 52, 0.444458 )
+scale = Vector2( 0.444, 0.3 )
+texture = ExtResource( 25 )
+
+[node name="grass 13" type="Sprite" parent="BG/Grass"]
+position = Vector2( 14, 0 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 19 )
+
+[node name="grass 14" type="Sprite" parent="BG/Grass"]
+position = Vector2( 10, 0 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 23 )
+
+[node name="grass 15" type="Sprite" parent="BG/Grass"]
+position = Vector2( -53, 0.444443 )
+scale = Vector2( 0.444444, 0.444444 )
+texture = ExtResource( 21 )
+
+[connection signal="hit" from="Player" to="." method="_hit"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
+[connection signal="timeout" from="HUD/GameTimer" to="HUD" method="_game_timer_tick"]
