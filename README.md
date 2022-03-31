@@ -1,6 +1,8 @@
 # CppParachute
 ## C++ GDNative Integration with GODOT Engine
 
+<img src='game.jpg'>
+
 ## Prerequisites
 Node.js <br>
 Visual Studio Build Tools for C++ 2019/2022 (within Visual Studio Installer)<br>
